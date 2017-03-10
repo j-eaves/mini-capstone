@@ -5,8 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-desc = "An amazing "
+require 'faker'
+desc = "Marvelous "
 10.times do
-  productname = Faker::Commerce.product_name
-  product = Product.new({name:product_name, price:Faker::Commerce.price.to_i, image:Faker::Placeholdit.image, description:desc+product_name})
+  product_name = Faker::Commerce.product_name
+  #Create and save 10 new products - works but doesn't seem to store products.
+  product3 = Product.create({name:product_name, price:Faker::Commerce.price.to_i, image:Faker::Placeholdit.image, description:(desc+(product_name.downcase))})
+  p product3
+  #product3.save
 end
