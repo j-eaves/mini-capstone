@@ -1,0 +1,11 @@
+<h3>You new product:</h3>
+<h5>[This is the page create.html.erb]</h5>
+
+<h3>Here is your new product</h3>
+<%= form_tag "/products/#{@product.id}", method: :post do %>
+<p><%= @product.id %></p>
+<p><%= @product.name %></p>
+<p><%= @product.price %></p>
+<p><a href=""<%= @product.image %></a></p>
+<p><%= @product.description %></p>
+<% end %>

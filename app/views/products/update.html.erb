@@ -1,0 +1,20 @@
+<h4>Here is your updated product</h4>
+<h5>[From the page: update.html.erb]</h5>
+<%= form_tag "/products/#{@product.id}", method: :post do %>
+
+<p>Product ID:</p>
+<p><%= @product.id %></p>
+
+<p>Product Name:</p>
+<p><%= @product.name %></p>
+
+<p>Product Price:</p>
+<p><%= @product.price %></p>
+
+<p>Product Image:</p>
+<p><%= @product.image %></p>
+
+<p>Product Description:</p>
+<p><%= @product.description %></p>
+
+<% end %>

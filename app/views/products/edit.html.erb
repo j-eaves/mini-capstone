@@ -1,0 +1,42 @@
+<h3> This is the edit form </h3>
+<h5>[This is the page new.html.erb]</h5>
+
+<%= form_tag "/products/#{@product.id}", method: :patch do %>
+<div>
+<label name="form_name">Name: </label>
+</div>
+<div>
+<input type="text" name="form_name" value= "<%= @product.name %>">
+</div>
+
+<div>
+<label name="form_price">Price: </label>
+</div>
+<div>
+<input type= "text" name = "form_price" value= "<%= @product.price %>">
+</div>
+
+<div>
+<label name="form_image">Image: </label>
+</div>
+<div>
+<input type="text" name="form_image" value= "<%= @product.image %>">
+</div>
+
+<div>
+<label name="form_description">Description: </label>
+</div>
+<div>
+<input type="text" name="form_description" value= "<%= @product.description %>">
+</div>
+
+<div>
+<input type="submit" value="Update">
+</div>
+<% end %>
+
+<%= form_tag "/products/#{@product.id}", method: :delete do %>
+  <div>
+  <input type="submit" value="Destroy?">
+  </div>
+<% end %>
