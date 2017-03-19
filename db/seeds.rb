@@ -29,7 +29,7 @@ require 'faker'
   #adjective = get_adjective
   adjective = Faker::Demographic.demonym
   #Create and save 10 new products - works but doesn't seem to store products.
-  product = Product.create({name:product_name, price:Faker::Commerce.price.to_i, image:Faker::Placeholdit.image, description:(adjective+" "+(product_name.downcase))})
+  product = Product.create({name:product_name, price:Faker::Commerce.price.to_i, image:Faker::Placeholdit.image, description:(adjective+" "+(product_name.downcase)), supplier_id: rand(1...2)})
   p product
   product.save
 end

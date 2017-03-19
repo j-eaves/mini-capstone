@@ -2,7 +2,15 @@ class ProductsController < ApplicationController
   
   def index
     #/index
-    @products = Product.all
+    if params[:sort] == "price_asc"
+      @products = Product.all.order(price: :asc)
+    elsif params[:sort] == "price_desc"
+      @products = Product.all.order(price: :desc)
+    elsif params[:sort] == "product_name"
+      @products = Product.all.order(name: :asc)
+    else
+      @products = Product.all
+    end
     render 'index.html.erb'
   end
 
@@ -26,6 +34,7 @@ class ProductsController < ApplicationController
       description: params[:form_description])
     @product.save
     #show the created form
+    flash[:create] = "You created a product"
     render 'create.html.erb'
   end
 
@@ -33,12 +42,16 @@ class ProductsController < ApplicationController
     #/show
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
+
     if @product.name == nil
       render 'index.html.erb'
-    end
+    else
     #@product = Product.find_by(id: params[:id])#this eliminates the first 2 lines
+    #redirect_to "/products/#{@product.id}" #redirecting to show
     render 'show.html.erb'
+    end
   end
+
   def edit
     #just renders this page
     @product = Product.find_by(id: params[:id])#finds the number and grabs the recipe
@@ -49,7 +62,7 @@ class ProductsController < ApplicationController
     #ruins everything if you don't update all fields
     #not showing changes after update
     #does not show default values
-    @product = Product.find_by(id: params['id'])
+    @product = Product.find_by(id: params[:id]) #should 'id' be @product.id ?
     #update saves these attributes automatically
     @product.update(
       name: params[:form_name],
@@ -57,12 +70,16 @@ class ProductsController < ApplicationController
       image: params[:form_image],
       description: params[:form_description]
       )
-    render 'update.html.erb'
+    flash[:update] = "You updated a product"
+    redirect_to "/products/#{@product.id}" #redirecting to show
+    #render 'update.html.erb'
   end
   def destroy
     @product = Product.find(params[:id])
     #@id = @product.id
     @product.destroy
-    render 'destroy.html.erb'
+    flash[:destroy] = "You destroyed a product"
+    redirect_to "/products" #redirecting to index
+    #render 'destroy.html.erb'
   end
 end

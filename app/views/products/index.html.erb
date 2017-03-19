@@ -1,14 +1,26 @@
-<h5><b>Here are all of your products</b></h5>
-<p>--------------------------</p>
-<p>| | | | | | | | | | | | | | | | | | | | |</p>
-<p>--------------------------</p>
+<h5><b><u>Here are all of your products</u></b></h5>
 <%@products.each do |product| %>
-<h5><b>Product ID:</b></h5>
-<p><%= product.id %></p>
-<h5><b>Product Name:</b></h5>
-<p><%= product.name %></p>
-<h5><b>Product Description:</b></h5>
-<p><%= product.description %></p>
-<p>--------------------------</p>
+  <% if product.name == nil %>
+  <% else %>
+
+      <div class="col-md-4">
+        <div class="well">
+          <p><b>Product ID: </b><%= product.id %></p>
+          <p><b>Product Name: </b><a href="/products/<%= product.id%>"><%= product.name %></a></p>
+          <p><b>Product Price: </b>$<%= product.price %></p>
+          <p><b>Product Description: </b><%= product.description %></p>
+          <p><b>Product Image: </b></p>
+          <p><img src="<%= product.image %>" height="100px"></p>
+          
+          <p><a href="/products/<%= product.id %>/edit">Edit This Product:</a></p>
+          <%= form_tag "/products/#{product.id}", method: :delete do %>
+            <div>
+            <input type="submit" value="Destroy Product?">
+            </div>
+          <% end %>
+        </div>
+      </div> 
+  
+  <% end %>
 <% end %>
 <p><a href="/products/new">Would you like to make a new recipe? Click here!</a></p>
