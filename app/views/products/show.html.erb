@@ -10,15 +10,20 @@
 
 <p><b>Product Supplier: </b><%= @product.supplier.name %></p>
 <p></p>
-
+ 
 <p><b>Product Price: </b>$<%= @product.price %></p>
 <p></p>
 
 <p><b>Product Image:</b></p>
-<p><img src="<%= @product.image %>" width="400px"></p>
+<% @product.images.each do |image| %>
+<p><img src="<%= image.url %>" width="400px"></p>
+<% end %>
 
 <p><b>Product Description: </b><%= @product.description %></p>
 <p></p>
+<div>
+  <input type="submit" value="Purchase">
+</div>
 
 <% end %>
 <p><a href="/products/<%= @product.id %>/edit">Edit This Product:</a></p>

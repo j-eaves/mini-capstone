@@ -1,7 +1,14 @@
 class ProductsController < ApplicationController
   
   def index
+    if current_user
+      @products = Product.all
+      render 'index.html.erb'
+    else
+      redirect_to '/login'
+    end
     #/index
+    #The code below may need to go in the above if statement
     if params[:sort] == "price_asc"
       @products = Product.all.order(price: :asc)
     elsif params[:sort] == "price_desc"
@@ -11,7 +18,7 @@ class ProductsController < ApplicationController
     else
       @products = Product.all
     end
-    render 'index.html.erb'
+    
   end
 
   # def products_page

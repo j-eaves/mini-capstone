@@ -32,4 +32,12 @@ require 'faker'
   product = Product.create({name:product_name, price:Faker::Commerce.price.to_i, image:Faker::Placeholdit.image, description:(adjective+" "+(product_name.downcase)), supplier_id: rand(1...2)})
   p product
   product.save
+end   
+
+Product.all.each do |product|
+  image1 = Image.new(
+    url: "whatever url"
+    product_id: product.id
+  )
+  image1.save
 end

@@ -14,6 +14,14 @@ Rails.application.routes.draw do
   #this is the update page
   patch '/products/:id' => 'products#update'
   delete '/products/:id' => 'products#destroy'
-  #get '/test_page'=>'products#products_page'
-  #I still need to make the product names into links via <a href="whatever"></a>
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  post '/orders' => 'orders#create'
+  
 end

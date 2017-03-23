@@ -6,3 +6,13 @@ body{
   font-family: Futura,"Trebuchet MS",Arial,sans-serif;
   background-image: url('confectionary.png')
 }
+//product_image is from the index page. The width is 100% of each well, not the page.
+.product_image{
+  width:100%;
+}
+
+/// another approach (that specifically shows the well connection):
+
+//.well img {
+//  width 100%;
+//}

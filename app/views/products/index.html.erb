@@ -1,17 +1,16 @@
-<h5><b><u>Here are all of your products</u></b></h5>
-<%@products.each do |product| %>
-  <% if product.name == nil %>
-  <% else %>
-
+<%@products.each_slice(3) do |three_products| %>
+  <div class="row">
+    <% three_products.each do |product| %>
       <div class="col-md-4">
         <div class="well">
+          <p><h6>Created: <%= product.friendly_created_at %></h6></p>
           <p><b>Product ID: </b><%= product.id %></p>
           <p><b>Product Name: </b><a href="/products/<%= product.id%>"><%= product.name %></a></p>
           <p><b>Product Price: </b>$<%= product.price %></p>
           <p><b>Product Description: </b><%= product.description %></p>
+          <p><b>Product Supplier ID: </b><%= product.supplier_id %></p>
           <p><b>Product Image: </b></p>
-          <p><img src="<%= product.image %>" height="100px"></p>
-          
+          <p><img class="product_image" src="<%= product.images[0].url %>"></p>
           <p><a href="/products/<%= product.id %>/edit">Edit This Product:</a></p>
           <%= form_tag "/products/#{product.id}", method: :delete do %>
             <div>
@@ -20,7 +19,7 @@
           <% end %>
         </div>
       </div> 
-  
-  <% end %>
+    <% end %> 
+  </div>
 <% end %>
 <p><a href="/products/new">Would you like to make a new recipe? Click here!</a></p>
